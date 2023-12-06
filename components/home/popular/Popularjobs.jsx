@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import {
   View,
   Text,
-  Pressable,
+  TouchableOpacity,
   FlatList,
   ActivityIndicator,
 } from "react-native";
@@ -32,9 +32,9 @@ const Popularjobs = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular jobs</Text>
-        <Pressable>
+        <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.cardsContainer}>
