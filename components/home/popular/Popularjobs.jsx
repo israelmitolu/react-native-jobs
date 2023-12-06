@@ -1,14 +1,65 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import { useState } from "react";
+import { useRouter } from "expo-router";
+import {
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 
-import styles from './popularjobs.style'
+import styles from "./popularjobs.style";
+import { COLORS, SIZES } from "../../../constants";
+import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import useFetch from "../../../hooks/useFetch";
 
 const Popularjobs = () => {
-  return (
-    <View>
-      <Text>Popularjobs</Text>
-    </View>
-  )
-}
+  const router = useRouter();
 
-export default Popularjobs
+  const { data, isLoading, error } = useFetch("search", {
+    query: "Frontend engineer",
+    num_pages: 1,
+  });
+
+  const [selectedJob, setSelectedJob] = useState();
+
+  const handleCardPress = (item) => {
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Popular jobs</Text>
+        <Pressable>
+          <Text style={styles.headerBtn}>Show all</Text>
+        </Pressable>
+      </View>
+
+      <View style={styles.cardsContainer}>
+        {isLoading ? (
+          <ActivityIndicator size="large" color={COLORS.primary} />
+        ) : error ? (
+          <Text style={{ color: COLORS.error }}>Something went wrong</Text>
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <PopularJobCard
+                item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
+              />
+            )}
+            keyExtractor={(item) => item.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+            horizontal
+          />
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default Popularjobs;
