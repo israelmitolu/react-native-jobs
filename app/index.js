@@ -7,9 +7,11 @@ import {
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
+import { useState } from "react";
 
 const Home = () => {
   const router = useRouter();
+  const [searchText, setSearchText] = useState("");
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -34,7 +36,15 @@ const Home = () => {
             padding: SIZES.medium,
           }}
         >
-          <Welcome />
+          <Welcome
+            searchText={searchText}
+            setSearchText={setSearchText}
+            handleClick={() => {
+              if (searchText) {
+                router.push(`/search/${searchText}`);
+              }
+            }}
+          />
           <Popularjobs />
           <Nearbyjobs />
         </View>
