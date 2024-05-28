@@ -1,6 +1,11 @@
-# Expo Router Example
+# RN Jobs: Find your next job in tech
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+This is a simple app that allows you to find jobs. It uses RapidAPI API to fetch jobs. The app is built with React Native and Expo.
+
+## 📸 Screenshots
+
+![Screenshot 1](./assets//images//app%20screens1.png)
+![Screenshot 2](./assets//images//app%20screens2.png)
 
 ## 🚀 How to use
 
@@ -8,7 +13,7 @@ Use [`expo-router`](https://expo.github.io/router) to build native navigation us
 npx create-expo-app -e with-router
 ```
 
-## 📝 Notes
+## 📝 Credits
 
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+- [Design by Michel Achkar](https://dribbble.com/shots/11867493-Job-finder-Mobile-UI-Job-list)
+- [Tutorial by JS Mastery](https://www.youtube.com/watch?v=mJ3bGvy0WAY&t=1s)
